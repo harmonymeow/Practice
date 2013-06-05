@@ -21,7 +21,7 @@ namespace UCTGT_version_1._0
 
 		static int findClostest(List<int> givenList, int givenTarget)
 		{
-
+			return 0;
 		}
 	}
 }

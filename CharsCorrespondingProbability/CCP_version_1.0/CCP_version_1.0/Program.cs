@@ -22,30 +22,51 @@ namespace CCP_version_1._0
 			ranges[0] = 0;
 			int i = 1;
 			int total = 0;
-			Dictionary<char, int> charsRanges = new Dictionary<char, int>();
+			Dictionary<int, char> charsRanges = new Dictionary<int, char>();
 			foreach (var pair in chars)
 			{
 				total = total + pair.Value;
 				ranges[i] = total;
 				i++;
-				charsRanges.Add(pair.Key, total);
+				charsRanges.Add(total, pair.Key);
 			}
 
-
+			for (int j = 0; j < 10; j++)
+			{
+				Console.WriteLine(random(charsRanges, ranges, total));
+			}
+			
 			Console.ReadLine();			
 		}
 		
-		static char random(Dictionary<char, int> charsRanges, int[] ranges, int total)
+		static char random(Dictionary<int, char> charsRanges, int[] ranges, int total)
 		{
 			Random r = new Random();
 			int n = r.Next(total);
-			return 'a';
+			char selected = charsRanges[BinarySearch(ranges, n, 0, ranges.Length - 1)];
+
+			return selected;
 		}
 
-		static int BinarySearch(int[] ranges, int target)
+		static int BinarySearch(int[] ranges, int target, int low, int high)
 		{
-			
-			return 0;
+			int mid = (high + low)/2;
+			if (mid == low || mid == high)
+			{
+				return ranges[mid];
+			}
+			if (ranges[mid] > target)
+			{
+				return BinarySearch(ranges, target, low, mid - 1);
+			}
+			else if (ranges[mid] < target)
+			{
+				return BinarySearch(ranges, target, mid + 1, high);
+			}
+			else
+			{
+				return ranges[mid];
+			}
 		}
 
 	}

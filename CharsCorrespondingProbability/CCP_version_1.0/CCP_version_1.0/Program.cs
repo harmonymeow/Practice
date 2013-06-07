@@ -12,11 +12,17 @@ namespace CCP_version_1._0
 	{
 		static void Main(string[] args)
 		{
+			Random r = new Random();
+			
 			Dictionary<char, int> chars = new Dictionary<char, int>();
-			chars.Add('a', 10);
-			chars.Add('b', 20);
-			chars.Add('c', 30);
-			chars.Add('d', 40);
+			// The values in the Dictionary need to be integers.
+			// The values do not have to add up to 100 or any number.
+			// The program will calculate the probability of each key to be outputted
+			// eg. 10 will have 2x probability than 5
+			chars.Add('a', 5);
+			chars.Add('b', 10);
+			chars.Add('c', 15);
+			chars.Add('d', 20);
 			chars.Add('e', 50);
 			int[] ranges = new int[chars.Count+1];
 			ranges[0] = 0;
@@ -31,6 +37,25 @@ namespace CCP_version_1._0
 				charsRanges.Add(total, pair.Key);
 			}
 
+			test(10000, chars, charsRanges, ranges, total, r);
+			Console.WriteLine("\nPress any key to out a random char");
+			Console.WriteLine("Or press q to quit:");
+			while (true)
+			{
+				ConsoleKeyInfo input = Console.ReadKey(true);
+				if (input.KeyChar == 'q' || input.KeyChar == 'Q')
+				{
+					return;
+				}
+				else
+				{
+					Console.WriteLine(random(charsRanges, ranges, total, r));
+				}
+			}
+		}
+
+		static void test(int repetition, Dictionary<char, int> chars, Dictionary<int, char> charsRanges, int[] ranges, int total, Random r)
+		{
 			Console.WriteLine("Test cases for Binary Search:");
 			Console.WriteLine("Expect: a Result: " + charsRanges[BinarySearch(ranges, 0, 0, ranges.Length - 1)]);
 			Console.WriteLine("Expect: a Result: " + charsRanges[BinarySearch(ranges, 5, 0, ranges.Length - 1)]);
@@ -40,23 +65,38 @@ namespace CCP_version_1._0
 			Console.WriteLine("Expect: d Result: " + charsRanges[BinarySearch(ranges, 35, 0, ranges.Length - 1)]);
 			Console.WriteLine("Expect: e Result: " + charsRanges[BinarySearch(ranges, 50, 0, ranges.Length - 1)]);
 
-			Random r = new Random();
-			for (int j = 0; j < 100; j++)
+			Console.WriteLine("\nProbability of each char under " + repetition + " iterations");
+			// Make a new dictionary to count how many times the chars are selected
+			Dictionary<char, int> selected = chars;
+			foreach (var key in selected.Keys.ToList<char>())
 			{
-				Console.WriteLine(random(charsRanges, ranges, total, r));
+				selected[key] = 0;
 			}
-		
-			Console.ReadLine();			
+
+			// Run the random selection (repetition) times
+			for (int j = 0; j < repetition; j++)
+			{
+				char temp = random(charsRanges, ranges, total, r);
+				selected[temp] = selected[temp] + 1;
+			}
+
+			// Calculate and Print the probability of each char
+			foreach (var pair in selected)
+			{
+				double probability = (double)pair.Value / repetition;
+				Console.WriteLine(pair.Key + ": " + probability);
+			}
 		}
 		
+		// Get a random char from chars dictionary
 		static char random(Dictionary<int, char> charsRanges, int[] ranges, int total, Random r)
 		{
 			int n = r.Next(total);
 			char selected = charsRanges[BinarySearch(ranges, n, 0, ranges.Length - 1)];
-
 			return selected;
 		}
 
+		// Binary Search (The return value has to be not 0 and round up to the upper bound within the ranges array)
 		static int BinarySearch(int[] ranges, int target, int low, int high)
 		{
 			int mid = (high + low)/2;
@@ -79,6 +119,5 @@ namespace CCP_version_1._0
 				return ranges[mid];
 			}
 		}
-
 	}
 }

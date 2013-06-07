@@ -19,11 +19,11 @@ namespace CCP_version_1._0
 			// The values do not have to add up to 100 or any number.
 			// The program will calculate the probability of each key to be outputted
 			// eg. 10 will have 2x probability than 5
-			chars.Add('a', 5);
-			chars.Add('b', 10);
-			chars.Add('c', 15);
-			chars.Add('d', 20);
-			chars.Add('e', 50);
+			chars.Add('a', 5);  //  5%
+			chars.Add('b', 10); // 10%
+			chars.Add('c', 15); // 15%
+			chars.Add('d', 20); // 20%
+			chars.Add('e', 50); // 50%
 			int[] ranges = new int[chars.Count+1];
 			ranges[0] = 0;
 			int i = 1;
@@ -37,7 +37,9 @@ namespace CCP_version_1._0
 				charsRanges.Add(total, pair.Key);
 			}
 
-			test(10000, chars, charsRanges, ranges, total, r);
+			// Run Test Cases and test the probability by running it repetitively
+			test(1000000, chars, charsRanges, ranges, total, r);
+
 			Console.WriteLine("\nPress any key to out a random char");
 			Console.WriteLine("Or press q to quit:");
 			while (true)
@@ -54,6 +56,7 @@ namespace CCP_version_1._0
 			}
 		}
 
+		// Test cases
 		static void test(int repetition, Dictionary<char, int> chars, Dictionary<int, char> charsRanges, int[] ranges, int total, Random r)
 		{
 			Console.WriteLine("Test cases for Binary Search:");

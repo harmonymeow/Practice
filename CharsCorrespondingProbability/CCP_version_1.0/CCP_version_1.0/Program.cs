@@ -31,17 +31,26 @@ namespace CCP_version_1._0
 				charsRanges.Add(total, pair.Key);
 			}
 
-			for (int j = 0; j < 10; j++)
+			Console.WriteLine("Test cases for Binary Search:");
+			Console.WriteLine("Expect: a Result: " + charsRanges[BinarySearch(ranges, 0, 0, ranges.Length - 1)]);
+			Console.WriteLine("Expect: a Result: " + charsRanges[BinarySearch(ranges, 5, 0, ranges.Length - 1)]);
+			Console.WriteLine("Expect: a Result: " + charsRanges[BinarySearch(ranges, 10, 0, ranges.Length - 1)]);
+			Console.WriteLine("Expect: b Result: " + charsRanges[BinarySearch(ranges, 15, 0, ranges.Length - 1)]);
+			Console.WriteLine("Expect: c Result: " + charsRanges[BinarySearch(ranges, 25, 0, ranges.Length - 1)]);
+			Console.WriteLine("Expect: d Result: " + charsRanges[BinarySearch(ranges, 35, 0, ranges.Length - 1)]);
+			Console.WriteLine("Expect: e Result: " + charsRanges[BinarySearch(ranges, 50, 0, ranges.Length - 1)]);
+
+			Random r = new Random();
+			for (int j = 0; j < 100; j++)
 			{
-				Console.WriteLine(random(charsRanges, ranges, total));
+				Console.WriteLine(random(charsRanges, ranges, total, r));
 			}
-			
+		
 			Console.ReadLine();			
 		}
 		
-		static char random(Dictionary<int, char> charsRanges, int[] ranges, int total)
+		static char random(Dictionary<int, char> charsRanges, int[] ranges, int total, Random r)
 		{
-			Random r = new Random();
 			int n = r.Next(total);
 			char selected = charsRanges[BinarySearch(ranges, n, 0, ranges.Length - 1)];
 
@@ -51,20 +60,22 @@ namespace CCP_version_1._0
 		static int BinarySearch(int[] ranges, int target, int low, int high)
 		{
 			int mid = (high + low)/2;
-			if (mid == low || mid == high)
-			{
-				return ranges[mid];
-			}
 			if (ranges[mid] > target)
 			{
-				return BinarySearch(ranges, target, low, mid - 1);
+				if (low == mid)
+					return ranges[high];
+				return BinarySearch(ranges, target, low, mid);
 			}
 			else if (ranges[mid] < target)
 			{
-				return BinarySearch(ranges, target, mid + 1, high);
+				if (low == mid)
+					return ranges[high];
+				return BinarySearch(ranges, target, mid, high);
 			}
 			else
 			{
+				if (ranges[mid] == 0)
+					return ranges[mid + 1];
 				return ranges[mid];
 			}
 		}

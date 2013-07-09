@@ -1,0 +1,12 @@
+Imagine you've received a code review request from a junior developer on your team.  Their code (in the attached file) is intended to maintain a sorted list of items. They plan to use this code as priority queue implementation in a runtime performance-critical application.
+
+Your task has four parts:
+1. Identify any problems in their code as implemented
+2. Provide suggestions about how the code could be better designed/structured given its intended application
+3. Implement your suggestions from #1 and #2
+4. Add following methods to your improved class:
+ - Find: this method will be used to find a given node in the queue
+ - Remove: this method will be used to remove a given node from the queue
+ Make any reasonable assumptions necessary in choosing a method signature and design strategy when implementing these methods.
+
+In your solution, please include written descriptions of problems/suggestions identified in parts #1 and #2, as well as separate versions of your code corresponding to parts #3 and #4. 

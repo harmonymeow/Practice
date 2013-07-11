@@ -8,13 +8,16 @@ public:
     SortedList(T value_)
     {
         m_head = new Node(value_, NULL);
+        size++;
     }
 
     void Push(T value)
     {
+        size++;
         if (Size() <= 0)
         {
             m_head = new Node(value, NULL);
+            return;
         }
         Node **where = &m_head;
         while (*where && (*where)->value < value) {
@@ -34,18 +37,20 @@ public:
         m_head = m_head->next;
         T result = pResult->value;
         delete(pResult);
+        size--;
         return result;
     }
 
     int Size()
     {
+        /*
         Node * p = m_head;
         int size = 0;
         while (p)
         {
             ++size;
             p = p->next;
-        }
+        }*/
         return size;
     }
 
@@ -63,6 +68,7 @@ private:
     };
 
     Node *m_head;
+    size = 0;
 };
 
 int main()
@@ -72,6 +78,7 @@ int main()
         list.Pop();
         list.Pop();
         list.Pop();
+        list.Push('c');
         cout << list.Size();
         return 0;
     }

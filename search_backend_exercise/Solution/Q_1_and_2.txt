@@ -10,7 +10,7 @@
 2.  i)  Currently, Size() runs at O(n). Instead of having Size() as a method, 
         adding a int size variable in SortedList class, increment by 1 in Push, decrement by 1 in Pop will reduce the runtime to O(1). 
     ii) The program should check for an empty list
-    *)  Currently, Push (and later Find and Remove) has a runtime complexity of
+    iii)Currently, Push (and later Find and Remove) has a runtime complexity of
         O(n). This can be reduced to log(n) if we change the data structure to
         dynamic arrays and use binary search instead of using linked list 
         with linear serach.

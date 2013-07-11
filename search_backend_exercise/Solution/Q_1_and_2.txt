@@ -1,0 +1,26 @@
+1.  a)  The methods in SortedList do not have access to Node::value and 
+        Node::private
+    b)  19: error: 'free' was not declared in this scope
+    c)  SortList does not have a contructor
+    d)  All of the SortedList methods rely on having m_head and yet, it's never
+        assigned with any values
+    e)  The while loop inside of the Size() method is missing curly braces
+    
+
+2.  i)  Currently, Size() runs at O(n). Instead of having Size() as a method, 
+        adding a int size variable in SortedList class, increment by 1 in Push, decrement by 1 in Pop will reduce the runtime to O(1). 
+    ii) The program should check for an empty list
+    *)  Currently, Push (and later Find and Remove) has a runtime complexity of
+        O(n). This can be reduced to log(n) if we change the data structure to
+        dynamic arrays and use binary search instead of using linked list 
+        with linear serach.
+    
+3.  a)  Changed the Node class contents to public
+    b)  Changed 'free' to 'delete'
+    c)  Added a SortList constructor
+    d)  Changed SortedList to initialize and assign m_head
+    e)  Added curly braces around ++size; p = p->next; inside of the while loop
+        in the Size() method
+    ii) Push will now add a Node with a value, and NULL to next if the
+        SortedList is empty. Pop will output an error message if the SortedList
+        is empty.

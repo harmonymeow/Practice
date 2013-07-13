@@ -8,7 +8,7 @@ public:
     SortedList(T value_)
     {
         m_head = new Node(value_, NULL);
-        size++;
+        size = 1;
     }
 
     void Push(T value)
@@ -60,7 +60,18 @@ private:
     };
 
     Node *m_head;
-    size = 0;
+
+    class BinaryHeap
+    {
+    public:
+        BinaryHeap()
+        {
+
+        }
+    private:
+        
+    }
+    int size;
 };
 
 int main()

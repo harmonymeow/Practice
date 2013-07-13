@@ -43,14 +43,6 @@ public:
 
     int Size()
     {
-        /*
-        Node * p = m_head;
-        int size = 0;
-        while (p)
-        {
-            ++size;
-            p = p->next;
-        }*/
         return size;
     }
 

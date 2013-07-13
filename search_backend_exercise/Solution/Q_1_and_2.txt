@@ -11,9 +11,10 @@
         adding a int size variable in SortedList class, increment by 1 in Push, decrement by 1 in Pop will reduce the runtime to O(1). 
     ii) The program should check for an empty list
     iii)Currently, Push (and later Find and Remove) has a runtime complexity of
-        O(n). This can be reduced to log(n) if we change the data structure to
+        O(n). This can be reduced to O(log(n)) if we change the data structure to
         binary heap and use binary search instead of using linked list 
-        with linear serach.
+        with linear serach. The only downside of this approach is that Pop()
+        will also become O(log(n)) instead of it being O(1).
     
 3.  a)  Changed the Node class contents to public
     b)  Changed 'free' to 'delete'

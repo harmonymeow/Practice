@@ -8,7 +8,7 @@ class SortedList
 public:
     SortedList(T value)
     {
-        array = new vector(10);
+        array.resize(10);
         array[1] = value;
         //m_head = new Node(value_, NULL);
         size = 1;
@@ -37,7 +37,7 @@ public:
         *where = new Node(value,*where);
         */
     }
-/*
+
     T Pop()
     {
         if (Size() <= 0)
@@ -45,14 +45,18 @@ public:
             cout << "ERROR: The SortedList is empty.";
             return NULL;
         }
+        array[1] = array[]
+        /*
         Node* pResult = m_head;
         m_head = m_head->next;
         T result = pResult->value;
         delete(pResult);
+        */
+
         size--;
         return result;
     }
-*/
+
     int Size()
     {
         return size;
@@ -81,11 +85,11 @@ private:
 int main()
     {
         SortedList<char> list = SortedList<char>('a');
-        //list.Push('b');
+        list.Push('b');
         //list.Pop();
         //list.Pop();
         //list.Pop();
         //list.Push('c');
-        //cout << list.Size();
+        cout << list.Size();
         return 0;
     }

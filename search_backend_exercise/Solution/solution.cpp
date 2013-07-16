@@ -73,12 +73,11 @@ private:
 
 int main()
     {
-        SortedList<char> list = SortedList<char>('a');
-        list.Push('b');
-        list.Pop();
-        list.Pop();
-        list.Pop();
-        list.Push('c');
+        SortedList<int> list = SortedList<int>(3);
+        list.Push(5);
+        cout << list.Pop() << endl;
+        cout << list.Pop() << endl;
+        list.Push(3);
         cout << list.Size();
         return 0;
     }

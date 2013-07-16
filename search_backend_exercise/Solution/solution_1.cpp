@@ -19,6 +19,7 @@ public:
         size = 1;
     }
 
+    // Inserts an element and rearranges the list
     void Push(T value)
     {
         if (size == array.size() - 1)
@@ -29,6 +30,7 @@ public:
         array[hole] = value;
     }
 
+    // Returns and removes the minimum element
     T Pop()
     {
         if (Size() <= 0)
@@ -60,14 +62,72 @@ public:
         return min;
     }
 
+    // returns the size of the element
     int Size()
     {
         return size;
     }
 
+    // returns the index of the first matching element
+    int Find(T value)
+    {
+        int pos = 1;
+        return Find(value, pos);
+        // returns 0 if the value is not found
+    }
+
+    
+    // Remove will remove the first matching element and rearrange the SortList
+    // to fill in the hole.
+    void Remove(T value)
+    {
+        int hole = Find(value);
+        if (hole != 0)
+        {
+            T temp = array[size];
+            int child;
+        for (; hole * 2 <= size; hole = child)
+        {
+            child = hole * 2;
+            if (child != size && array[child + 1] < array[child])
+                child++;
+            if (array[child] < temp)
+                array[hole] = array[child];
+            else
+                break;
+        }
+        array[hole] = temp;
+        array[size] = NULL;
+    }
+}
+        
+
 private:
     int size;
     vector<T> array;
+
+    // Recursive depth-first pre-order search
+    int Find(T value, int pos)
+    {
+        int index;
+        if (array[pos] == value)
+            return pos;
+        // Searches left child
+        if (array[pos * 2] <= value && pos * 2 <= size)
+        {
+            index = Find(value, pos *2);
+            if (index != 0)
+                return index;
+        }
+        // searches right child
+        if (array[pos * 2 + 1] <= value && pos * 2 + 1 <= size)
+        {
+            index = Find(value, pos * 2 + 1);
+            if (index != 0)
+                return index;
+        }
+        return 0;
+    }
 };
 
 int main()
@@ -84,8 +144,13 @@ int main()
         list.Push(26);
         list.Push(32);
         list.Push(31);
-        cout << list.Pop() << endl;
-        cout << list.Pop() << endl;
-        //cout << list.Size() << endl;
+    
+        cout << list.Find(1) << endl;
+        cout << list.Find(13) << endl;
+        cout << list.Find(68) << endl;
+        list.Remove(13);
+        list.Remove(68);
+        cout << list.Find(13) << endl;
+        cout << list.Find(68) << endl;
         return 0;
     }

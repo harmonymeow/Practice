@@ -30,7 +30,7 @@ public:
         array[hole] = value;
     }
 
-    // Returns and removes the minimum element
+    // Returns and removes the minimum element, and restore the heap property
     T Pop()
     {
         if (Size() <= 0)
@@ -77,8 +77,8 @@ public:
     }
 
     
-    // Remove will remove the first matching element and rearrange the SortList
-    // to fill in the hole.
+    // Remove will remove the first matching element and restore the 
+    //heap property
     void Remove(T value)
     {
         int hole = Find(value);
@@ -86,20 +86,20 @@ public:
         {
             T temp = array[size];
             int child;
-        for (; hole * 2 <= size; hole = child)
-        {
-            child = hole * 2;
-            if (child != size && array[child + 1] < array[child])
-                child++;
-            if (array[child] < temp)
-                array[hole] = array[child];
-            else
-                break;
+            for (; hole * 2 <= size; hole = child)
+            {
+                child = hole * 2;
+                if (child != size && array[child + 1] < array[child])
+                    child++;
+                if (array[child] < temp)
+                    array[hole] = array[child];
+                else
+                    break;
+            }
+            array[hole] = temp;
+            array[size] = NULL;
         }
-        array[hole] = temp;
-        array[size] = NULL;
     }
-}
         
 
 private:

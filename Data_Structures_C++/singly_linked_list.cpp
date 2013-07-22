@@ -13,6 +13,7 @@ public:
 
   void Push(T value)
   {
+    // O(1)
     size++;
     if (Size() <= 0)
     {
@@ -26,6 +27,7 @@ public:
 
   T Pop()
   {
+    // O(1)
     if (Size() <= 0)
     {
       cout << "ERROR: The SinglyLinkedList is empty." << endl;
@@ -33,16 +35,18 @@ public:
     }
     else
     {
+      size--;
       Node *resultNode = head;
       head = head->next;
       T result = resultNode->value;
-      delete(head);
+      delete(resultNode);
       return result;
     }
   }
 
   void Remove(T value)
   {
+    // Linear Search, O(n)
     if (Size() <= 0)
     {
       cout << "ERROR: The SinglyLinkedList is empty." << endl;
@@ -60,12 +64,14 @@ public:
       {
         prev->next = where->next;
         delete(where);
+        size--;
       }
     }
   }
 
   int Size()
   {
+    // O(1)
     return size;
   }
 
@@ -94,9 +100,10 @@ int main()
   list.Push(2);
   list.Push(3);
   list.Remove(2);
-  //list.Remove(4);
-  cout << list.Pop() << endl;
-  cout << list.Pop() << endl;
-  cout << list.Pop() << endl;
+  list.Remove(4);
+  cout << list.Pop() << " | " << list.Size() << endl;
+  cout << list.Pop() << " | " << list.Size() << endl;
+  cout << list.Pop() << " | " << list.Size() << endl;
+  cout << list.Pop() << " | " << list.Size() << endl;
   return 0;
 };

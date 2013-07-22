@@ -66,6 +66,7 @@ private:
             value = value_;
             next = next_;
         }
+
         T value;
         Node* next;
     };

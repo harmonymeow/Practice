@@ -42,4 +42,4 @@
 
     * Pop should have else statement after if
     * check *where != NULL
-    * add endl after Pop error
+    * could have made value and next private, and created get functions for them

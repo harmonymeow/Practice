@@ -5,10 +5,10 @@ template <class T>
 class SinglyLinkedList
 {
 public:
-  SinglyLinkedList(T value_)
+  SinglyLinkedList()
   {
-    head = new Node(value_, NULL);
-    size = 1;
+    head = NULL;
+    size = 0;
   }
 
   void Push(T value)
@@ -30,7 +30,7 @@ public:
     // O(1)
     if (Size() <= 0)
     {
-      cout << "ERROR: The SinglyLinkedList is empty." << endl;
+      cout << "ERROR: The SinglyLinkedList is empty.";
       return NULL;
     }
     else
@@ -49,7 +49,7 @@ public:
     // Linear Search, O(n)
     if (Size() <= 0)
     {
-      cout << "ERROR: The SinglyLinkedList is empty." << endl;
+      cout << "ERROR: The SinglyLinkedList is empty.";
     }
     else
     {
@@ -89,21 +89,6 @@ private:
     Node *next;
   };
 
-private:
   Node *head;
   int size;
-};
-
-int main()
-{
-  SinglyLinkedList<int> list = SinglyLinkedList<int>(1);
-  list.Push(2);
-  list.Push(3);
-  list.Remove(2);
-  list.Remove(4);
-  cout << list.Pop() << " | " << list.Size() << endl;
-  cout << list.Pop() << " | " << list.Size() << endl;
-  cout << list.Pop() << " | " << list.Size() << endl;
-  cout << list.Pop() << " | " << list.Size() << endl;
-  return 0;
 };

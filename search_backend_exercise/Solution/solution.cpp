@@ -19,11 +19,14 @@ public:
             m_head = new Node(value, NULL);
             return;
         }
-        Node **where = &m_head;
-        while (*where && (*where)->value < value) {
-            where = &((*where)->next);
+        else
+        {
+            Node **where = &m_head;
+            while (*where && (*where)->value < value) {
+                where = &((*where)->next);
+            }
+            *where = new Node(value,*where);
         }
-        *where = new Node(value,*where);
     }
 
     T Pop()

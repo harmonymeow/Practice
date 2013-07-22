@@ -8,7 +8,7 @@
     
 
 2.  i)  Currently, Size() runs at O(n). Instead of having Size() as a method, 
-        adding a int size variable in SortedList class, increment by 1 in Push, decrement by 1 in Pop will reduce the runtime to O(1). 
+        adding an int size variable in SortedList class, increment by 1 in Push, decrement by 1 in Pop will reduce the runtime to O(1). 
     ii) The program should check for an empty list
     iii)Currently, Push has a runtime complexity of O(n). This can be reduced 
         to O(log(n)) if we change the data structure to binary heap instead of using a linked list. The only downside of this approach is that Pop()
@@ -38,3 +38,8 @@
     will return 0 if the value is not found in the SortedList.
 
     Remove will remove the first matching element and restore the heap property.
+
+
+    * Pop should have else statement after if
+    * check *where != NULL
+    * add endl after Pop error

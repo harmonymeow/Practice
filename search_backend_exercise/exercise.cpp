@@ -44,4 +44,3 @@ private:
 
     Node* m_head;
 };
-
